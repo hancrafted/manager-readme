@@ -18,6 +18,8 @@ Some general information to facilitate remote work:
 
 - **I ask "Why?" a lot:** Coming from a product/startup background, I am very curious. If I ask "Why did you do it this way?", I am not criticizing or blaming you. I am simply trying to understand.
 - **Silence is okay:** If I ask a question and you need time to think, that is fine. You can always get back to me later.
+- **Inverted pyramid & "Don't make me think":** Lead with the conclusion, decision, or ask at the top, and put the context and details below. Connect the dots for your reader so they don't have to reconstruct why something matters.
+- **Calibrated candour & trust budget:** Every claim spends the trust you have built; evidence and verifiable proof earn it back. State proven facts plainly, and when something is an unverified guess, say *"this is my hypothesis"*. When we disagree on design or architecture, I prefer citing published standards, research, or concrete working proof over arguing personal preference, rank, or volume.
 
 ### Focus time
 I highly value everyone's focus time and people who show respect for mine.
@@ -49,6 +51,9 @@ This article matches my mental model quite well:
 
 **My Philosophy**: You drive, I navigate. I believe you do your best work when you have the freedom to drive your own topics. I want you to feel ownership of your code. However, I know that true ownership requires a safe environment.
 
+- **Obsolete by design:** I measure my leadership by how little you need me in the room afterwards. In Kant's words, *Sapere aude* — have the courage to use your own judgment rather than waiting for external direction. As Lao Tzu put it: *"When the best leader's work is done, the people say, 'We did it ourselves.'"*
+- **Outcomes over methods:** On a highway we agree on the destination, and nobody drives the wrong way. Which car you take is up to you.
+
 **Safety First**
 
 - **Mistakes happen**: We are building complex software. I will never blame you for an honest mistake, but I will hold you accountable for hiding them. I focus on fixing the process, not blaming the person.
@@ -60,9 +65,42 @@ This article matches my mental model quite well:
 - **Proactive vs. Reactive:** You are the experts on the code you write. If you see a way to improve our code or process, please tell me. I want to hear your ideas.
 - **My Role:** My job is to unblock you, provide context, and handle the politics. Your job is to focus on the technology.
 
+### How I Think About Engineering & AI
+
+Software only exists as a translation layer between human intent and computing power. As natural language becomes the new programming interface, how we engineer software and manage our work shifts fundamentally:
+
+- **People first (socio-technical systems):** AI is an accelerator, not a silver bullet. Plug it into a culture or codebase that isn't ready, and Conway's law guarantees you'll just get the good and the bad parts faster. When AI 10x's coding speed, the bottleneck doesn't vanish—it moves downstream to requirements, architecture, and verification.
+- **AI gave you a promotion you never asked for:** Writing code and prose used to be the natural brake that held complexity in check. Now that generation is nearly free, every individual contributor becomes more **manager than maker**. Your leverage comes from how well you **plan, spec, and review**.
+- **Treat AI like a brilliant freelancer with amnesia:** It knows every trade, never asks clarifying questions on its own, and forgets everything after each session. Manage it with five moves:
+  1. **Break it down** into small vertical slices.
+  2. **Requirements first** — state what "done" looks like before execution starts.
+  3. **Let AI grill you** — have the agent interview you relentlessly to surface hidden assumptions and edge cases before it writes a line of code.
+  4. **One chat, one job** — treat the context window as a finite attention budget; pass explicit handoffs to fresh sessions before context rot sets in.
+  5. **Evaluate every step** — never let an agent grade its own homework without a check.
+- **The determinism split:** Push work as far left toward deterministic machine checks as possible (*cheap and certain → fuzzy AI middle → expensive human semantic judgment*). Let fast unit tests, type schemas, linters, and automated architecture/document harnesses carry the mechanical rules; use AI for synthesis and exploration; save human attention for architecture, UX taste, and final accountability.
+- **Architecture and agent legibility beat delivery:** Deadlines cut scope or polish, never structure. Keep modules deep, domain language exact (`GLOSSARY.md`), and repositories navigable so both a new teammate and an AI agent can reach any authoritative fact in two hops.
+
 ## About Me
 
-Below you'll find quite a long lists of personal interests.
+I have worked across every link of the SaaS value chain — from **Sales Director** in Asia (Infobip, closing 50+ contracts across Kuala Lumpur, Shenzhen, and Beijing), to **Full-Stack Founding Engineer** (Selfbits, building industrial IoT/MES software across 5 European factories), to **Tech Lead & UX/Requirements Lead** (XL2 for Audi, delivering a €7M approval-gate modernization), to **Engineering Manager & Principal AI Enablement Engineer** (RIB Software), alongside 2,000+ hours of coaching and training startups, engineers, and NPOs since 2010.
+
+### Recent Efforts in AI
+
+I spend a lot of my time—both at work and in the evenings—building and teaching practical AI enablement. I believe in **practising what I teach**: anything I claim in a workshop is backed by public research and proven in my own agentic repositories first.
+
+- **[hancrafted.net](https://hancrafted.net) — Visual Knowledge Library & Interactive Explorables:** I build an open, bilingual (EN/DE) library of visual Episodes and interactive [Explorable Explanations](https://hancrafted.net/explorables/) backed by a vetted research wiki:
+  - **[Treat AI like a brilliant freelancer with amnesia](https://hancrafted.net/episodes/onboard-ai-every-time/)**, **[Why AI has a weird attention span you must learn to manage](https://hancrafted.net/episodes/ai-attention-span/)**, and **[Why AI gives you more work](https://hancrafted.net/episodes/ai-gives-you-more-work/)**.
+  - **[Context Window & Attention Visualizer](https://hancrafted.net/explorables/context-window/):** Interactive simulation of token budgets (200K vs. 1M), attention sinks, the "lost in the middle" effect, and auto-compaction, built on real Claude Code session logs.
+  - **[Human-in-the-Loop Agentic Workflows](https://hancrafted.net/explorables/human-in-the-loop/):** A hands-on workflow board where non-technical and technical users alike can practice orchestrating multi-stage AI pipelines (grilling, specs, parallel tasks, verification) in ChatGPT, Gemini, or CLI agents.
+  - **[AI Capability Timeline](https://hancrafted.net/explorables/ai-capability/):** Visualizing how Prompting (2022), Agents (2024), Workflows (2024), and the Agentic Factory (2026) each add a layer on top of the same underlying LLM—and why "20x productivity" requires moving up those layers rather than typing better chat prompts.
+  - **[Agent CLI & Workshop Starter Guide](https://hancrafted.net/guides/setup-ai-agent-and-starter-folder/):** A step-by-step interactive onboarding guide that takes even terminal-shy users from zero to running their first local agent skills across Claude Code, GitHub Copilot CLI, Codex, and Gemini CLI.
+- **Harness Engineering & Deterministic Governance:** To keep multi-agent codebases from decaying into "slop," I build and enforce deterministic harnesses:
+  - **Archgate ADRs** for executable TypeScript architecture rules and escalated tech-debt tracking.
+  - **`markdown-harness` (`mh`)** — a CLI tool I built to govern markdown repositories: enforcing document schemas, frontmatter provenance (`generated by` vs. `verified by human`), freshness (`stale_after`), and agent writing contracts.
+- **Reusable Agent Skills & Visual Decision Specs (`/to-html-spec`):** I author composable agent skills for voice-first `/grilling` (relentless requirement interviews while commuting), `/tdd`, two-axis `/code-review` (Standards vs. Spec), `/writing-for-agents` (context pointers, progressive disclosure, leading words), and `/to-html-spec` — turning complex engineering or design trade-offs into self-contained, interactive HTML decision pages with side-by-side visual options, dictation-friendly feedback rails, and ablation evals so humans can make high-confidence decisions fast.
+- **The Agentic Factory:** Building local-first, model-agnostic pipelines (`events.jsonl` tracing, rubric scoring, YouTube post-production automation that learns from my manual edits) that turn repeatable digital and engineering work into measurable Pipelines of Jobs.
+
+Below you'll find quite a long list of personal interests.
 
 ### Hobbies
 
